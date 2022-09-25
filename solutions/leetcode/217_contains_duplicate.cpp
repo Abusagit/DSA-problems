@@ -1,8 +1,11 @@
 #include <unordered_set>
+#include <vector>
+#include <unordered_set>
+
 
 class Solution {
 public:
-    bool containsDuplicate(vector<int>& nums) {
+    bool containsDuplicate(std::vector<int>& nums) {
         std::unordered_set<int> set;
         
         for (auto x: nums){

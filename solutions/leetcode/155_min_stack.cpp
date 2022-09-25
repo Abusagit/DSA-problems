@@ -1,3 +1,6 @@
+#include <stack>
+
+
 class MinStack {
 public:
     std::stack<int> stack;

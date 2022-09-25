@@ -1,8 +1,10 @@
 #include <string>
+#include <stack>
+#include <unordered_map>
 
 class Solution {
 public:
-    bool isValid(string s) {
+    bool isValid(std::string s) {
         std::stack<int> stack;
         std::unordered_map<char, char> complement = {
             {')', '('},
