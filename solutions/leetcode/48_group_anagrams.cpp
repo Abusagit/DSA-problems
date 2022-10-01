@@ -28,6 +28,7 @@ public:
             std::stringstream result;
             std::copy(encoding.begin(), encoding.end(), std::ostream_iterator<int>(result, "-"));
             std::string s = result.str();
+            s = s.substr(0, s.length()-1); // get rid of trailing -
 
             if (map.find(s) == map.end()){
                 map[s] = {x};
