@@ -37,21 +37,20 @@ public:
     vector<string> decode(string &str) {
         vector<string> result;
 
-        int i = 0;
-        while (i < str.size()){
-            if (isdigit(str[i])){
-                int j = 1;
-                while (isdigit(str[i+(j++)])){}
-                // i is length of substring-digit;
-                int substring_len = std::stoi(str.substr(i, i+j));
-                string s  = str.substr(i + j + 1, i+j+1+substring_len); //i + j + 1 - start of a string after i+j chars of digits and 1 char of delimiter
-
-                result.push_back(s);
-                i+= j + 1 + substring_len;
-            }
-            i++;
-            
+        int delim_size = (this->delim).size();
         
+        int i = 0;
+
+        while (i < str.size()){
+            int j = 1;
+            for(;std::isdigit(str[i+j]);j++){}
+
+            int substring_len = std::stoi(str.substr(i, i+j));
+
+            string s = str.substr(i+j+delim_size, i+j+substring_len+delim_size);
+
+            result.push_back(s);
+            i += j + substring_len + delim_size;
         }
 
         return result;
