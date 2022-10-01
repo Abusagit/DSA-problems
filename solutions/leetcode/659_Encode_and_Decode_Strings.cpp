@@ -6,7 +6,8 @@
 using std::vector;
 using std::string;
 
-
+// Time: O(n)
+// Space: O(1)
 class Solution {
 public:
     /*
@@ -42,12 +43,12 @@ public:
         int i = 0;
 
         while (i < str.size()){
-            int j = 1;
-            for(;std::isdigit(str[i+j]);j++){}
+            int j = i + 1;
+            for(; !std::isdigit(str[j]) ;j++){}
 
-            int substring_len = std::stoi(str.substr(i, i+j));
+            int substring_len = std::stoi(str.substr(i, j - i)); // substring from index i with length j - i
 
-            string s = str.substr(i+j+delim_size, i+j+substring_len+delim_size);
+            string s = str.substr(j + 1, substring_len);
 
             result.push_back(s);
             i += j + substring_len + delim_size;
