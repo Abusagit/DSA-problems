@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 
 
 class Solution {
@@ -38,6 +39,36 @@ public:
                 }
             }
         
+        }
+
+        return area;
+    }
+
+
+    int trap_faster(std::vector<int>& height) {
+        int left = 0;
+        int right = height.size() - 1;
+
+        int area = 0;
+        
+        
+        int max_L = height[left];
+        int max_R = height[right];
+        
+        while(left < right){
+            if (max_L <= max_R){ //left rectangle is lower than right
+                left++;
+                max_L = std::max({max_L, height[left]});
+                
+                area += max_L - height[left];
+                
+            } else {
+                right--;
+                max_R = std::max({max_R, height[right]});
+                area += max_R - height[right];
+                
+            }
+            
         }
 
         return area;
