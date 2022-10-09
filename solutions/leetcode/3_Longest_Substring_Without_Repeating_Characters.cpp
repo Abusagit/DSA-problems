@@ -1,6 +1,7 @@
 #include <string>
 #include <unordered_map>
 #include <algorithm>
+#include <unordered_set>
 
 using std::string;
 using std::unordered_map;
@@ -30,5 +31,23 @@ public:
                                                                                 // This is valid bc 1st case - last char is unique - explained earlier
                                                                                 //  2nd case - last char is non-unique --> values s.size() - start_idx will be 1 as start_idx was updated on the last iteration
 
+    }
+
+    int lengthOfLongestSubstring_2_pointers(string s) { //analogous approach
+        std::unordered_set<char> letters;
+        int i = 0; //lower bound of a substring
+        int j = 0; // upper bound of a substring
+        int result = 0;
+        while (j < s.size()) {
+            if (letters.count(s[j]) == 0) { //s[j] is not in set
+                letters.insert(s[j]);
+                result = max(result, j - i + 1); //update after each non-repeating character --> also deals with single-char string and string-substrings themselves
+                j++;
+            } else {
+                letters.erase(s[i]);
+                i++; // shift lower bound b.c. new element replaces last element and new substring will be 1 character shorted than previous (we 'delete' duplicate and contract string by doing this) 
+            }
+        }
+        return result;
     }
 };
