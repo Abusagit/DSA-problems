@@ -3,13 +3,12 @@
 #include <algorithm>
 
 
-
-
-
-class Solution {
 using std::vector;
 using std::unordered_set;
 using std::max;
+
+
+class Solution {
 
 public:
     int longestConsecutive(vector<int>& nums) {
