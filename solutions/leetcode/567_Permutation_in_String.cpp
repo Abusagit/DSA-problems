@@ -6,7 +6,7 @@ using std::unordered_map;
 
 
 // m = len(s1)
-// n = len(s2)
+// 00n = len(s2)
 // construct hashmaps for counting occurences of characters comprising s1 in any substring of length m in s2
 // until element occures in s2 more times than it occures in s1, increment counter of matches
 // when it starsts occuring more than needed - stop incrementing counter
