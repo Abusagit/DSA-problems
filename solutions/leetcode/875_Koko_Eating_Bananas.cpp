@@ -27,10 +27,10 @@ public:
             
             if (hours_to_eat_all_bananas <= h){
                 min_speed = min(min_speed, middle_speed);
-                high_speed = --middle_speed;
+                high_speed = middle_speed - 1;
                 
             } else {
-                low_speed = ++middle_speed;
+                low_speed = middle_speed + 1;
             }
             
             
