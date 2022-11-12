@@ -73,3 +73,45 @@ private:
         return new_head;
     }
 };
+
+
+ListNode* reverseKGroup(ListNode* head, int k) {
+    ListNode* dummy = new ListNode(0, head);
+
+    ListNode* before = dummy;
+    ListNode* after = head;
+
+    ListNode* curr = nullptr;
+    ListNode* prev = nullptr;
+    ListNode* next = nullptr;
+
+
+    while (true){
+        ListNode* cursor = after;
+        for (int i = 0; i < k; i++){
+            if (cursor == nullptr){
+                return dummy->next;
+            }
+            cursor = cursor->next;
+        }
+
+        //cursor points on the next segment of the list not affected by current reversing
+
+        curr = after;
+        prev = before;
+
+        for (int i = 0; i < k; i++){
+            next = curr->next;
+
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        after->next = curr;
+        before->next = prev;
+        before = after;
+        after = curr;
+    }
+
+}
