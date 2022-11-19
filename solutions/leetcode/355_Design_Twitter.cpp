@@ -7,15 +7,6 @@
 using namespace std;
 
 
-// struct TweetMetaInfo {
-//     TweetMetaInfo(int x, int y, int z, int m): tweet_id(x), user_id(y), followee_id(z), index_in_array(m) {}
-//     int tweet_id;
-//     int user_id;
-//     int followee_id;
-//     int index_in_array;
-// };
-
-
 class TupleComparator {
 public:
     bool operator() (tuple<int, int, int, int>& A, tuple<int, int, int, int>& B) {
