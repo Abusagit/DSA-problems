@@ -85,3 +85,33 @@ int leftmost_binary_search(vector<int>& array, int key){
 
 
 }
+
+
+int get_index_of_closest_value(vector<int>& array, int key, int size){
+    // returns index of closest valut to the key
+
+    int left = 0;
+    int right = size - 1;
+
+    while (left <= right){
+        int middle = (left + right) / 2;
+
+
+        if (array[middle] < key){
+            left = middle + 1;
+        } else {
+            right = middle - 1;
+        }
+    }
+
+
+    // left == index of the smallest element greater than or equal key
+    // closest value procedure:
+    if (array[left] != key && left > 0 && abs(array[left - 1] - key) <= abs(array[left] - key)){\
+        // if array[left] is not 1st element AND key is not found AND array[left - 1] is not farther to key than array[left] -> return left - 1 b.c. it`s the closest
+        return left - 1;
+    }
+
+    return left;
+
+}
