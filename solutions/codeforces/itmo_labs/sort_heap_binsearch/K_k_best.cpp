@@ -1,0 +1,79 @@
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <vector>
+#include <stdio.h>
+
+using namespace std;
+
+
+struct Tresure{
+    int index;
+    int weight;
+    int value;
+
+    double coeff;
+};
+
+
+
+bool compare_by_coeff(Tresure a, Tresure b){ //descending order
+    return a.coeff > b.coeff;
+}
+
+bool compare_by_index(Tresure a, Tresure b){ //ascending order
+    return a.index < b.index;
+}
+
+bool check(double coefficient, vector<Tresure>& array, int k){
+    for (int i = 0; i < array.size(); i++){
+        array[i].coeff = 1.0 * array[i].value * coefficient - 1.0 * array[i].weight;
+    }
+
+    sort(array.begin(), array.end(), compare_by_coeff);
+
+    double sum = 0;
+
+    for (int i = 0; i < k; i++){
+        sum += array[i].coeff;
+    }
+
+    return sum < 0;
+}
+
+
+int main(){
+    int n, k;
+    scanf("%d %d", &n, &k);
+
+    vector<Tresure> array(n);
+    
+
+    // initialize array of things
+    for (int i = 0; i < n; i++){
+        scanf("%d %d", &array[i].value, &array[i].weight);
+        array[i].index = i + 1;
+    }
+
+    double left = 0, right = 1e+7;
+    for (int j = 0; j < 50; j++){
+        double m = (left + right) / 2;
+
+        
+        if (check(m, array, k)) { // checks whether new sum of coeff for the top K treasures sums up to 0 
+            left = m;
+        } else {
+            right = m;
+        }
+        // printf("%lf, %d \n", m, check(m, array, k));
+    
+    }
+
+    // printf("%lf:\n", (left + right) / 2);
+
+    sort(array.begin(), array.begin() + k, compare_by_index);
+    for (int i = 0; i < k; i++){
+        printf("%d %lf\n", array[i].index, array[i].coeff);
+    }
+    return 0;
+}
