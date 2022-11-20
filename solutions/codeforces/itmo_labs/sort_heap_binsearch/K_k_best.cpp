@@ -17,16 +17,19 @@ struct Tresure{
 
 
 
-bool compare_by_coeff(Tresure a, Tresure b){ //descending order
+bool compare_by_coeff(Tresure a, Tresure b){ //descending order of Treasures by their amortized coefficients
     return a.coeff > b.coeff;
 }
 
-bool compare_by_index(Tresure a, Tresure b){ //ascending order
+bool compare_by_index(Tresure a, Tresure b){ //ascending order before final output
     return a.index < b.index;
 }
 
 bool check(double coefficient, vector<Tresure>& array, int k){
     for (int i = 0; i < array.size(); i++){
+        // get larger values for Treasures with lower denominators 
+        // coefficient should be small enough to penalize Treasures with high value/weight ratio but with high weight as well
+        // ==> e.g. with small coefficient Treasure with value 2 and weight 5 will be more pleasant than Treasure with value 200 and weight 500
         array[i].coeff = 1.0 * array[i].value * coefficient - 1.0 * array[i].weight;
     }
 
@@ -34,6 +37,7 @@ bool check(double coefficient, vector<Tresure>& array, int k){
 
     double sum = 0;
 
+    // sum of top K treasures` coeffs should be zero
     for (int i = 0; i < k; i++){
         sum += array[i].coeff;
     }
@@ -63,6 +67,7 @@ int main(){
         if (check(m, array, k)) { // checks whether new sum of coeff for the top K treasures sums up to 0 
             left = m;
         } else {
+            // if sum is not zero - try smaller coefficient ==> large denominators will make sum = 0
             right = m;
         }
         // printf("%lf, %d \n", m, check(m, array, k));
