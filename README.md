@@ -1,2 +1,4 @@
 # DSA_cpp
-My hobby repo for automated posting of the solutions for data structures and algorithms related problems from different resources, written in C++
+My hobby repo for automated solutions posting for data structures and algorithms problems from different resources
+
+Code is written in C++ [and as duplicate in Python]
