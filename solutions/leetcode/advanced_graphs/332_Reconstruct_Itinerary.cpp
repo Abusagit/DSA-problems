@@ -29,6 +29,7 @@ private:
     void dfs(string airport, vector<string>& result){
         while(!graph[airport].empty()){
             string next_min_lexicographic_airport = *graph[airport].begin();
+            
             graph[airport].erase(graph[airport].begin()); // need to pass pointer, if pass string - it will delete all keys with this string!!!
             dfs(next_min_lexicographic_airport, result);
         }
