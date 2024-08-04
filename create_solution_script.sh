@@ -34,7 +34,9 @@ done
 
 
 NAME="${NAME// /_}" # replace spaces by underscores
-NAME="${NAME//-/}"  # delete lines from name
+NAME="${NAME//-/_}"  # delete replace lines by underscores
+NAME="${NAME//\`/}"  # delete '`' from name
+NAME="${NAME//\'/}"  # delete '  from name
 NAME="${NAME//./}.${EXTENSION}" # delete dots from name
 
 mkdir -p $OUTDIR # create directory if it doesn`t exist
